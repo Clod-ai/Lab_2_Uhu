@@ -4,7 +4,7 @@ public class Empleado{
 	
 	public enum TipoEmpleado{Vendedor, Encargado};
 
-	private float calculaNominaBruta(TipoEmpleado tipo, float ventasMes, float horasExtra) {
+	public float calculaNominaBruta(TipoEmpleado tipo, float ventasMes, float horasExtra) {
 		
 		float salariobase=0, prima=0, extras=0;
 		
@@ -26,7 +26,7 @@ public class Empleado{
 		return salariobase+prima+extras;
 	}
 	
-	private float calculoNominaNeta(float nominaBruta) {
+	public float calculoNominaNeta(float nominaBruta) {
 		float retencion =0;
 		
 		if (nominaBruta > 2500){
