@@ -54,14 +54,22 @@ class CalculadoraTest {
 	@Test
 	void testMultiplicacion() {
 		int expected = 18;
-		int actual=Calculadora.resta(value1,value2);
+		int actual=Calculadora.multiplicacion(value1,value2);
 		assertEquals(expected,actual);
 	}
 
 	@Test
 	void testDivide() {
 		int expected = 2;
-		int actual=Calculadora.resta(value1,value2);
+		int actual=Calculadora.divide(value1,value2);
+		assertEquals(expected,actual);
+	}
+	
+	@Test
+	void testDividePor0() {
+		int expected = -1;
+		value2 =0;
+		int actual=Calculadora.divide(value1,value2);
 		assertEquals(expected,actual);
 	}
 
