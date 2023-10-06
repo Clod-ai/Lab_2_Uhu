@@ -27,12 +27,67 @@ class EmpleadoTest {
 	}
 
 	@Test
-	void testCalculaNominaBruta() {
+	void testCalculaNominaBrutaEncargado() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testCalculoNominaNeta() {
+	void testCalculoNominaNetaVendedor() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testCalculaNominaBrutaOtro() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testCalculaNominaBrutaVentasNegativa() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testCalculaNominaBrutaVentasMesMenos1000() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testCalculaNominaBrutaVentasMesEntre1000y1500() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testCalculaNominaBrutaVentasMesMayor1500() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testCalculaNominaBrutaHorasExtraPositivas() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testCalculaNominaBrutaHorasExtraNegativas() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testCalculoNominaNetaNegativa() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testCalculoNominaNetaMenos2100() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testCalculoNominaNetaEntre2100y2500() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testCalculoNominaNetaMayor2500() {
 		fail("Not yet implemented");
 	}
 
