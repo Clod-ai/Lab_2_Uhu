@@ -8,11 +8,15 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import Empleados.Empleado;
+import Empleados.Empleado.TipoEmpleado;
+
 class EmpleadoTest {
 
-	public enum TipoEmpleado{Vendedor, Encargado, Otro};
+	public TipoEmpleado tipo = TipoEmpleado.Vendedor;
 	public float ventasMes;
 	public float horasExtra;
+	
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -25,9 +29,9 @@ class EmpleadoTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		TipoEmpleado tipo = Encargado;
-		ventasMes = 1000;
-		horaExtra = 2;
+		tipo = TipoEmpleado.Encargado;
+		ventasMes = 990;
+		horasExtra = 0;
 		
 	}
 
@@ -37,35 +41,40 @@ class EmpleadoTest {
 
 	@Test
 	void testCalculaNominaBrutaEncargado() {
-		TipoEmpleado tipo = Encargado;
-		int expected = 2,660;
-		int actaul = calculaNominaBruta(tipo, ventasMes, horaExtra);
+		tipo = TipoEmpleado.Encargado;
+		float expected = 2500;
+		float actaul = Empleado.calculaNominaBruta(tipo, ventasMes, horasExtra);
 		assertEquals(expected,actaul);
 	}
 
 	@Test
 	void testCalculoNominaNetaVendedor() {
-		TipoEmpleado tipo = Vendedor;
-		int expected = 2,160;
-		int actaul = calculaNominaBruta(tipo, ventasMes, horaExtra);
+		tipo = TipoEmpleado.Vendedor;
+		float expected = 2000;
+		float actaul = Empleado.calculaNominaBruta(tipo, ventasMes, horasExtra);
 		assertEquals(expected,actaul);
 	}
 	
 	@Test
 	void testCalculaNominaBrutaOtro() {
-		TipoEmpleado tipo = Otro;
-		int expected = 60;
-		int actaul = calculaNominaBruta(tipo, ventasMes, horaExtra);
+		tipo = TipoEmpleado.Otro;
+		ventasMes = 0;
+		horasExtra=0;
+		
+		float expected = 0;
+		float actaul = Empleado.calculaNominaBruta(tipo, ventasMes, horasExtra);
 		assertEquals(expected,actaul);
 	}
 
 	@Test
 	void testCalculaNominaBrutaVentasNegativa() {
 
-		ventasMes = -50;
+		tipo = TipoEmpleado.Vendedor;
+		ventasMes = -500;
+		horasExtra = 0;
 		
-		int expected = 2,560;
-		int actaul = calculaNominaBruta(tipo, ventasMes, horaExtra);
+		float expected = 2000;
+		float actaul = Empleado.calculaNominaBruta(tipo, ventasMes, horasExtra);
 		
 		assertEquals(expected,actaul);
 	}
@@ -73,10 +82,12 @@ class EmpleadoTest {
 	@Test
 	void testCalculaNominaBrutaVentasMesMenos1000() {
 		
-		ventasMes = 999;
+		tipo = TipoEmpleado.Vendedor;
+		ventasMes = 500;
+		horasExtra = 0;
 		
-		int expected = 2,560;
-		int actaul = calculaNominaBruta(tipo, ventasMes, horaExtra);
+		float expected = 2000;
+		float actaul = Empleado.calculaNominaBruta(tipo, ventasMes, horasExtra);
 		
 		assertEquals(expected,actaul);
 	}
@@ -86,8 +97,8 @@ class EmpleadoTest {
 
 		ventasMes = 1250;
 		
-		int expected = 2,660;
-		int actaul = calculaNominaBruta(tipo, ventasMes, horaExtra);
+		float expected = 2600;
+		float actaul = Empleado.calculaNominaBruta(tipo, ventasMes, horasExtra);
 		
 		assertEquals(expected,actaul);
 	}
@@ -95,21 +106,25 @@ class EmpleadoTest {
 	@Test
 	void testCalculaNominaBrutaVentasMesMayor1500() {
 
+		tipo = TipoEmpleado.Encargado;
 		ventasMes = 1750;
+		horasExtra = 0;
 		
-		int expected = 2,760;
-		int actaul = calculaNominaBruta(tipo, ventasMes, horaExtra);
-		
+		float expected = 2700;
+		float actaul = Empleado.calculaNominaBruta(tipo, ventasMes, horasExtra);
+		System.out.println(actaul);
 		assertEquals(expected,actaul);
 	}
 	
 	@Test
 	void testCalculaNominaBrutaHorasExtraPositivas() {
 		
-		horaExtra = 2;
+		tipo = TipoEmpleado.Encargado;
+		ventasMes = 1750;
+		horasExtra = 2;
 		
-		int expected = 2,660;
-		int actaul = calculaNominaBruta(tipo, ventasMes, horaExtra);
+		float expected = 2760;
+		float actaul = Empleado.calculaNominaBruta(tipo, ventasMes, horasExtra);
 		
 		assertEquals(expected,actaul);
 	}
@@ -117,10 +132,12 @@ class EmpleadoTest {
 	@Test
 	void testCalculaNominaBrutaHorasExtraNegativas() {
 		
-		horaExtra = -2;
+		tipo = TipoEmpleado.Otro;
+		ventasMes=0;
+		horasExtra = -1;
 		
-		int expected = 2,540;
-		int actaul = calculaNominaBruta(tipo, ventasMes, horaExtra);
+		float expected = -30;
+		float actaul = Empleado.calculaNominaBruta(tipo, ventasMes, horasExtra);
 		
 		assertEquals(expected,actaul);
 	}
@@ -128,12 +145,12 @@ class EmpleadoTest {
 	@Test
 	void testCalculoNominaNetaNegativa() {
 		
-		TipoEmpleado tipo = Otro;
-		horaExtra = -2;
+		tipo = TipoEmpleado.Otro;
+		horasExtra = -2;
 		ventasMes = 500;
 		
-		int expected = -60;
-		int actaul = calculoNominaNeta(calculaNominaBruta(tipo, ventasMes, horaExtra));
+		float expected = -60;
+		float actaul = Empleado.calculoNominaNeta(Empleado.calculaNominaBruta(tipo, ventasMes, horasExtra));
 		
 		assertEquals(expected,actaul);
 	}
@@ -141,12 +158,12 @@ class EmpleadoTest {
 	@Test
 	void testCalculoNominaNetaMenos2100() {
 		
-		TipoEmpleado tipo = Vendedor;
-		horaExtra = 0;
+		tipo = TipoEmpleado.Vendedor;
+		horasExtra = 0;
 		ventasMes = 500;
 		
-		int expected = 2000;
-		int actaul = calculoNominaNeta(calculaNominaBruta(tipo, ventasMes, horaExtra));
+		float expected = 2000;
+		float actaul = Empleado.calculoNominaNeta(Empleado.calculaNominaBruta(tipo, ventasMes, horasExtra));
 		
 		assertEquals(expected,actaul);
 	}
@@ -154,12 +171,12 @@ class EmpleadoTest {
 	@Test
 	void testCalculoNominaNetaEntre2100y2500() {
 		
-		TipoEmpleado tipo = Vendedor;
-		horaExtra = 1;
+		tipo = TipoEmpleado.Vendedor;
+		horasExtra = 1;
 		ventasMes = 1000;
 		
-		int expected = 1,836;
-		int actaul = calculoNominaNeta(calculaNominaBruta(tipo, ventasMes, horaExtra));
+		float expected = (float) 1810.5;
+		float actaul = Empleado.calculoNominaNeta(Empleado.calculaNominaBruta(tipo, ventasMes, horasExtra));
 		
 		assertEquals(expected,actaul);
 	}
@@ -167,12 +184,12 @@ class EmpleadoTest {
 	@Test
 	void testCalculoNominaNetaMayor2500() {
 		
-		TipoEmpleado tipo = Encargado;
-		horaExtra = 0;
+		tipo = TipoEmpleado.Encargado;
+		horasExtra = 0;
 		ventasMes = 1000;
 		
-		int expected = 2,132;
-		int actaul = calculoNominaNeta(calculaNominaBruta(tipo, ventasMes, horaExtra));
+		float expected = 2132;
+		float actaul = Empleado.calculoNominaNeta(Empleado.calculaNominaBruta(tipo, ventasMes, horasExtra));
 		
 		assertEquals(expected,actaul);
 	}
